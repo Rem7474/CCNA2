@@ -73,6 +73,8 @@ function displayQuestions() {
 
 //fonction pour commencer le quizz
 function GetDataQuizz() {
+    localStorage.setItem("score", 0);
+    localStorage.setItem("currentQuestionIndex", 0);
     var questions = getQuestions();
     var shuffledQuestions = shuffleQuestions(questions);
     return shuffledQuestions;
@@ -82,6 +84,7 @@ function GetDataQuizz() {
 function displayQuestions() {
     var shuffledQuestions = GetDataQuizz();
     var div = document.getElementById("quizz");
+    div.innerHTML = "";
     var divQuestion = document.createElement("div");
     divQuestion.setAttribute("id", "question");
     div.appendChild(divQuestion);
