@@ -65,6 +65,11 @@ button:hover {
     background-color: #555;
 }
 
+img {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
 /* Styles pour la section des corrections */
 #corrections {
     border: 1px solid #ccc;
