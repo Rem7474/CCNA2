@@ -106,26 +106,24 @@ function displayQuestions() {
     var question = document.createElement("p");
     question.innerHTML = shuffledQuestions[currentQuestionIndex].question;
     divQuestion.appendChild(question);
-    
-    if (shuffledQuestions[currentQuestionIndex].type == 1) {
-        for (var i = 0; i < shuffledQuestions[currentQuestionIndex].reponses.length; i++) {
-            var reponse = document.createElement("input");
-            //définition des attributs de l'input suivant le nombre de réponses
-            if (shuffledQuestions[currentQuestionIndex].nbReponsesCorrectes == 1) {
-                reponse.setAttribute("type", "radio");
-            }
-            else {
-                reponse.setAttribute("type", "checkbox");
-            }
-            reponse.setAttribute("name", "reponse");
-            reponse.setAttribute("id", "reponse" + i);
-            divQuestion.appendChild(reponse);
-            var label = document.createElement("label");
-            label.setAttribute("for", "reponse" + i);
-            label.innerHTML = shuffledQuestions[currentQuestionIndex].reponses[i];
-            divQuestion.appendChild(label);
+    for (var i = 0; i < shuffledQuestions[currentQuestionIndex].reponses.length; i++) {
+        var reponse = document.createElement("input");
+        //définition des attributs de l'input suivant le nombre de réponses
+        if (shuffledQuestions[currentQuestionIndex].nbReponsesCorrectes == 1) {
+            reponse.setAttribute("type", "radio");
         }
-    } else {
+        else {
+            reponse.setAttribute("type", "checkbox");
+        }
+        reponse.setAttribute("name", "reponse");
+        reponse.setAttribute("id", "reponse" + i);
+        divQuestion.appendChild(reponse);
+        var label = document.createElement("label");
+        label.setAttribute("for", "reponse" + i);
+        label.innerHTML = shuffledQuestions[currentQuestionIndex].reponses[i];
+        divQuestion.appendChild(label);
+    }
+    if (shuffledQuestions[currentQuestionIndex].type == 2) {
         var image = document.createElement("img");
         image.setAttribute("src", shuffledQuestions[currentQuestionIndex].image);
         divQuestion.appendChild(image);
