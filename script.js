@@ -46,7 +46,8 @@ function getQuestions() {
             question.reponses.push(data[i][j]);
         }
         for (var j = 4 + parseInt(question.nbReponses); j < 4 + parseInt(question.nbReponses) + parseInt(question.nbReponsesCorrectes); j++) {
-            question.reponsesCorrectes.push(data[i][j]);
+
+            question.reponsesCorrectes.push(question.reponses[parseInt(data[i][j]) - 1]);
         }
 
 
