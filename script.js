@@ -6,6 +6,10 @@
 //affichage du nombre de question correcte et incorrecte
 //affichage du pourcentage de réussite
 
+//event listener pour le chargement de la page
+document.addEventListener("DOMContentLoaded", displayQuestions);
+document.getElementById("next").addEventListener("click", displayQuestions);
+
 //fonction pour récupérer les données du fichier csv
 function getCSVData() {
     //récupération du fichier csv (décodage ANSI)
@@ -68,10 +72,45 @@ function displayQuestions() {
 }
 
 //fonction pour commencer le quizz
-function startQuizz() {
+function GetDataQuizz() {
     var questions = getQuestions();
     var shuffledQuestions = shuffleQuestions(questions);
-    console.log(shuffledQuestions);
+    return shuffledQuestions;
 }
 
-    
+//fonction pour afficher les questions et réponses
+function displayQuestions() {
+    var shuffledQuestions = GetDataQuizz();
+    var div = document.getElementById("quizz");
+    var divQuestion = document.createElement("div");
+    divQuestion.setAttribute("id", "question");
+    div.appendChild(divQuestion);
+    var question = document.createElement("p");
+    question.innerHTML = shuffledQuestions[0].question;
+    divQuestion.appendChild(question);
+    if (shuffledQuestions[0].type == 1) {
+        for (var i = 0; i < shuffledQuestions[0].reponses.length; i++) {
+            var reponse = document.createElement("input");
+            reponse.setAttribute("type", "radio");
+            reponse.setAttribute("name", "reponse");
+            reponse.setAttribute("id", "reponse" + i);
+            divQuestion.appendChild(reponse);
+            var label = document.createElement("label");
+            label.setAttribute("for", "reponse" + i);
+            label.innerHTML = shuffledQuestions[0].reponses[i];
+            divQuestion.appendChild(label);
+        }
+    } else {
+        var image = document.createElement("img");
+        image.setAttribute("src", shuffledQuestions[0].image);
+        divQuestion.appendChild(image);
+    }
+    var divReponse = document.createElement("div");
+    divReponse.setAttribute("id", "reponses");
+    div.appendChild(divReponse);
+    var reponse = document.createElement("button");
+    reponse.innerHTML = "Valider";
+    reponse.setAttribute("onclick", "checkAnswer()");
+    divReponse.appendChild(reponse);
+}
+
