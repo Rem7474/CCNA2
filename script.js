@@ -95,7 +95,10 @@ function displayQuestions() {
     
     // Store the updated current question index in local storage
     localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
-    
+    //affiche le numéro de la question en cours sur le nombre total de questions
+    var questionNumber = document.createElement("p");
+    questionNumber.innerHTML = "Question " + (currentQuestionIndex + 1) + " / 50";
+    divQuestion.appendChild(questionNumber);
     var question = document.createElement("p");
     question.innerHTML = shuffledQuestions[currentQuestionIndex].question;
     divQuestion.appendChild(question);
