@@ -102,6 +102,7 @@ function startQuiz(event) {
     localStorage.setItem("currentQuestionIndex", 0);
     //retire l'affichage du formulaire
     event.target.remove();
+    document.getElementById("questions").style.display = "block";
     displayQuestions();
 }
 
