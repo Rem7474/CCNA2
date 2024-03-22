@@ -213,12 +213,14 @@ function displayCorrectAnswers(correctAnswers) {
     var correctAnswersDiv = document.getElementById("correct-answers");
     correctAnswersDiv.innerHTML = "";
     var p = document.createElement("p");
-    p.textContent = "Réponses correctes :";
+    p.innerHTML = "Réponses correctes :";
     correctAnswers.forEach(function (answer) {
         var span = document.createElement("span");
-        span.textContent = answer;
+        span.innerHTML = answer;
+        //ajout de la classe correct pour mettre en vert les réponses correctes
+        span.classList.add("correct");
         p.appendChild(span);
-        p.textContent += ", ";
+        p.innerHTML += ", ";
     });
     // Retirer la virgule supplémentaire à la fin
     p.innerHTML = p.innerHTML.slice(0, -2);
