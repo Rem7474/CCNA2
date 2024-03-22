@@ -18,7 +18,7 @@ function getCSVData() {
     var lines = csvData.split("\n");
     //création d'un tableau pour chaque ligne
     var data = [];
-    for (var i = 0; i < lines.length; i++) {
+    for (var i = 0; i < lines.length - 1; i++) {
         data.push(lines[i].split(";"));
     }
     return data;
