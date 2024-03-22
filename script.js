@@ -10,7 +10,7 @@
 function getCSVData() {
     //récupération du fichier csv
     var csvFile = new XMLHttpRequest();
-    csvFile.open("GET", "questions.csv", false);
+    csvFile.open("GET", "ExamCisco2.csv", false);
     csvFile.send(null);
     var csvData = csvFile.responseText;
     //séparation des lignes
