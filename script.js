@@ -203,6 +203,10 @@ function checkAnswer() {
 
 // Fonction pour afficher les réponses correctes en cas de réponse incorrecte
 function displayCorrectAnswers(correctAnswers) {
+    //enlever bouton valider dans reponses
+    var reponses = document.getElementById("reponses");
+    reponses.innerHTML = "";
+    // Afficher les réponses correctes
     var correctionsSection = document.getElementById("corrections");
     correctionsSection.style.display = "block";
     var correctAnswersDiv = document.getElementById("correct-answers");
@@ -231,8 +235,8 @@ function NextAnswer() {
     var nextQuestionIndex = parseInt(currentQuestionIndex) + 1;
     localStorage.setItem("currentQuestionIndex", nextQuestionIndex);
     //supprimer les réponses correctes
-    var correctionsSection = document.getElementById("correct-answers");
-    correctionsSection.innerHTML = "";
+    var correctionsSection = document.getElementById("corrections");
+    correctionsSection.style.display = "block";
     // Vérifier si le quizz est terminé
     
     if (nextQuestionIndex < shuffledQuestions.length) {
@@ -253,4 +257,9 @@ function displayScore() {
     var p = document.createElement("p");
     p.innerHTML = "Pourcentage de réussite : " + (score / shuffledQuestions.length * 100) + " %";
     div.appendChild(p);
+    //ajout d'un bouton pour recommencer le quizz
+    var button = document.createElement("button");
+    button.innerHTML = "Recommencer";
+    button.addEventListener("click", setupQuiz);
+    div.appendChild(button);
 }

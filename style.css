@@ -87,3 +87,7 @@ button:hover {
 #next:hover, #reponse:hover {
     background-color: #555;
 }
+
+#corrections {
+    display: none;
+}
