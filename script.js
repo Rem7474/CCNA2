@@ -236,7 +236,7 @@ function NextAnswer() {
     localStorage.setItem("currentQuestionIndex", nextQuestionIndex);
     //supprimer les réponses correctes
     var correctionsSection = document.getElementById("corrections");
-    correctionsSection.style.display = "block";
+    correctionsSection.style.display = "none";
     // Vérifier si le quizz est terminé
     
     if (nextQuestionIndex < shuffledQuestions.length) {
