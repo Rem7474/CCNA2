@@ -227,14 +227,15 @@ function displayCorrectAnswers(correctAnswers) {
 }
 function NextAnswer() {
     // Stocker l'index de la prochaine question dans le stockage local
+    var currentQuestionIndex = localStorage.getItem("currentQuestionIndex");
     var nextQuestionIndex = parseInt(currentQuestionIndex) + 1;
     localStorage.setItem("currentQuestionIndex", nextQuestionIndex);
     //supprimer les réponses correctes
     var correctionsSection = document.getElementById("corrections");
     correctionsSection.innerHTML = "";
     // Vérifier si le quizz est terminé
-    var currentQuestionIndex = localStorage.getItem("currentQuestionIndex");
-    if (currentQuestionIndex < shuffledQuestions.length) {
+    
+    if (nextQuestionIndex < shuffledQuestions.length) {
         displayQuestions();
     } else {
         displayScore();
