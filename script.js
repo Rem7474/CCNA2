@@ -78,39 +78,82 @@ function GetDataQuizz() {
     return shuffledQuestions;
 }
 
-//fonction pour afficher les questions et réponses
+//fonction pour afficher les questions et réponses, si appelé avec un paramètre, affiche la question suivante
 function displayQuestions() {
     var shuffledQuestions = GetDataQuizz();
     var div = document.getElementById("quizz");
     var divQuestion = document.createElement("div");
     divQuestion.setAttribute("id", "question");
     div.appendChild(divQuestion);
+    
+    // Check if there is a current question index stored in local storage
+    var currentQuestionIndex = localStorage.getItem("currentQuestionIndex");
+    if (currentQuestionIndex === null) {
+        // If no current question index is stored, set it to 0
+        currentQuestionIndex = 0;
+    } else {
+        // If a current question index is stored, increment it
+        currentQuestionIndex++;
+    }
+    
+    // Store the updated current question index in local storage
+    localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
+    
     var question = document.createElement("p");
-    question.innerHTML = shuffledQuestions[0].question;
+    question.innerHTML = shuffledQuestions[currentQuestionIndex].question;
     divQuestion.appendChild(question);
-    if (shuffledQuestions[0].type == 1) {
-        for (var i = 0; i < shuffledQuestions[0].reponses.length; i++) {
+    
+    if (shuffledQuestions[currentQuestionIndex].type == 1) {
+        for (var i = 0; i < shuffledQuestions[currentQuestionIndex].reponses.length; i++) {
             var reponse = document.createElement("input");
-            reponse.setAttribute("type", "radio");
+            //définition des attributs de l'input suivant le nombre de réponses
+            if (shuffledQuestions[currentQuestionIndex].nbReponsesCorrectes == 1) {
+                reponse.setAttribute("type", "radio");
+            }
+            else {
+                reponse.setAttribute("type", "checkbox");
+            }
             reponse.setAttribute("name", "reponse");
             reponse.setAttribute("id", "reponse" + i);
             divQuestion.appendChild(reponse);
             var label = document.createElement("label");
             label.setAttribute("for", "reponse" + i);
-            label.innerHTML = shuffledQuestions[0].reponses[i];
+            label.innerHTML = shuffledQuestions[currentQuestionIndex].reponses[i];
             divQuestion.appendChild(label);
         }
     } else {
         var image = document.createElement("img");
-        image.setAttribute("src", shuffledQuestions[0].image);
+        image.setAttribute("src", shuffledQuestions[currentQuestionIndex].image);
         divQuestion.appendChild(image);
     }
+    
     var divReponse = document.createElement("div");
     divReponse.setAttribute("id", "reponses");
     div.appendChild(divReponse);
     var reponse = document.createElement("button");
     reponse.innerHTML = "Valider";
-    reponse.setAttribute("onclick", "checkAnswer()");
+    reponse.addEventListener("click", checkAnswer);
     divReponse.appendChild(reponse);
+}
+
+//fonction pour vérifier la réponse donnée, enregistrer le score et afficher la question suivante
+function checkAnswer() {
+    var shuffledQuestions = GetDataQuizz();
+    var reponses = document.getElementsByName("reponse");
+    var reponsesCorrectes = shuffledQuestions[localStorage.getItem("currentQuestionIndex")].reponsesCorrectes;
+    var score = localStorage.getItem("score");
+    var nbReponsesCorrectes = 0;
+    for (var i = 0; i < reponses.length; i++) {
+        if (reponses[i].checked) {
+            if (reponsesCorrectes.indexOf(shuffledQuestions[localStorage.getItem("currentQuestionIndex")].reponses[i]) != -1) {
+                nbReponsesCorrectes++;
+            }
+        }
+    }
+    if (nbReponsesCorrectes == shuffledQuestions[localStorage.getItem("currentQuestionIndex")].nbReponsesCorrectes) {
+        score++;
+    }
+    localStorage.setItem("score", score);
+    displayQuestions();
 }
 
