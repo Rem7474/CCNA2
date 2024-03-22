@@ -40,7 +40,7 @@ function getQuestions() {
             nbReponsesCorrectes: data[i][3],
             reponses: [],
             reponsesCorrectes: [],
-            image: data[i][data[i].length - 1]
+            image: data[i][4 + parseInt(data[i][2]) + parseInt(data[i][3])]
         }
         for (var j = 4; j < 4 + parseInt(question.nbReponses); j++) {
             question.reponses.push(data[i][j]);
