@@ -11,7 +11,7 @@ localStorage.setItem("score", 0);
 localStorage.setItem("currentQuestionIndex", 0);
 document.addEventListener("DOMContentLoaded", displayQuestions);
 document.getElementById("next").addEventListener("click", displayQuestions);
-
+var shuffledQuestions = GetDataQuizz();
 //fonction pour récupérer les données du fichier csv
 function getCSVData() {
     //récupération du fichier csv (décodage ANSI)
@@ -69,11 +69,6 @@ function shuffleQuestions(questions) {
     return shuffledQuestions;
 }
 
-
-//fonction pour afficher les questions et réponses associées
-function displayQuestions() {
-}
-
 //fonction pour commencer le quizz
 function GetDataQuizz() {
     var questions = getQuestions();
@@ -83,7 +78,6 @@ function GetDataQuizz() {
 
 //fonction pour afficher les questions et réponses, si appelé avec un paramètre, affiche la question suivante
 function displayQuestions() {
-    var shuffledQuestions = GetDataQuizz();
     var div = document.getElementById("quizz");
     div.innerHTML = "";
     var divQuestion = document.createElement("div");
@@ -147,7 +141,6 @@ function displayQuestions() {
 
 //fonction pour vérifier la réponse donnée, enregistrer le score et afficher la question suivante
 function checkAnswer() {
-    var shuffledQuestions = GetDataQuizz();
     var reponses = document.getElementsByName("reponse");
     var reponsesCorrectes = shuffledQuestions[localStorage.getItem("currentQuestionIndex")].reponsesCorrectes;
     var score = localStorage.getItem("score");
