@@ -111,22 +111,30 @@ function displayQuestions() {
         image.setAttribute("src", shuffledQuestions[currentQuestionIndex].image);
         divQuestion.appendChild(image);
     }
+    var divReponses = document.createElement("div");
+    divReponses.setAttribute("class", "reponses");
+    divQuestion.appendChild(divReponses);
     for (var i = 0; i < shuffledQuestions[currentQuestionIndex].reponses.length; i++) {
-        var reponse = document.createElement("input");
+        var divReponse = document.createElement("div");
+        divReponse.setAttribute("class", "reponse");
+        divReponses.appendChild(divReponse);
+        
+        var input = document.createElement("input");
         //définition des attributs de l'input suivant le nombre de réponses
         if (shuffledQuestions[currentQuestionIndex].nbReponsesCorrectes == 1) {
-            reponse.setAttribute("type", "radio");
+            input.setAttribute("type", "radio");
         }
         else {
-            reponse.setAttribute("type", "checkbox");
+            input.setAttribute("type", "checkbox");
         }
-        reponse.setAttribute("name", "reponse");
-        reponse.setAttribute("id", "reponse" + i);
-        divQuestion.appendChild(reponse);
+        input.setAttribute("name", "reponse");
+        input.setAttribute("id", "reponse" + i);
+        divReponse.appendChild(input);
+        
         var label = document.createElement("label");
         label.setAttribute("for", "reponse" + i);
         label.innerHTML = shuffledQuestions[currentQuestionIndex].reponses[i];
-        divQuestion.appendChild(label);
+        divReponse.appendChild(label);
     }
     var divReponse = document.createElement("div");
     divReponse.setAttribute("id", "reponses");
