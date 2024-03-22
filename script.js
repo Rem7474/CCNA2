@@ -8,9 +8,10 @@
 
 //fonction pour récupérer les données du fichier csv
 function getCSVData() {
-    //récupération du fichier csv
+    //récupération du fichier csv (décodage ANSI)
     var csvFile = new XMLHttpRequest();
     csvFile.open("GET", "ExamCisco2.csv", false);
+    csvFile.overrideMimeType("text/plain; charset=iso-8859-1"); // specify the character encoding
     csvFile.send(null);
     var csvData = csvFile.responseText;
     //séparation des lignes
