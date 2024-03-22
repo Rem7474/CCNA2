@@ -133,9 +133,6 @@ function displayQuestions() {
     reponse.innerHTML = "Valider";
     reponse.addEventListener("click", checkAnswer);
     divReponse.appendChild(reponse);
-    // Store the updated current question index in local storage
-    currentQuestionIndex++;
-    localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
 }
 
 //fonction pour vérifier la réponse donnée, enregistrer le score et afficher la question suivante
@@ -155,6 +152,10 @@ function checkAnswer() {
         score++;
     }
     localStorage.setItem("score", score);
+    // Store the updated current question index in local storage
+    var nextQuestionIndex = localStorage.getItem("currentQuestionIndex");
+    nextQuestionIndex++;
+    localStorage.setItem("currentQuestionIndex", nextQuestionIndex);
     // Check if the current question index is less than 50
     if (localStorage.getItem("currentQuestionIndex") < 50) {
         displayQuestions();
