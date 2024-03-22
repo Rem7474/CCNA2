@@ -1,16 +1,16 @@
 //utilise un fichier csv contenant les questions et réponse du quizz d'entrainement au ccna2
 //structure du fichier : question;type de question(1 pour texte 2 pour image); nb de réponses; nb réponse correcte; réponse1; réponse2; réponse3; réponse4; réponse correcte1; réponse correcte2; réponse correcte3; réponse correcte4; lien de l'image
 //affichage des questions et réponses dans une page html
-//affichage du score à la fin du quizz, qui est composé de 50 question pris aléatoirement dans le fichier csv (et pas deux fois la même question)
+//affichage du score à la fin du quizz, qui est composé de question pris aléatoirement dans le fichier csv (et pas deux fois la même question)
 //affichage du temps mis pour répondre à l'ensemble des questions
 //affichage du nombre de question correcte et incorrecte
 //affichage du pourcentage de réussite
 
 //event listener pour le chargement de la page
-var shuffledQuestions = GetDataQuizz();
 localStorage.setItem("score", 0);
 localStorage.setItem("currentQuestionIndex", 0);
-document.addEventListener("DOMContentLoaded", displayQuestions);
+// Event listener pour le chargement de la page
+document.addEventListener("DOMContentLoaded", setupQuiz);
 //fonction pour récupérer les données du fichier csv
 function getCSVData() {
     //récupération du fichier csv (décodage ANSI)
@@ -57,10 +57,14 @@ function getQuestions() {
     return questions;
 }
 
-//fonction pour mélanger les questions et en choisir 50
-function shuffleQuestions(questions) {
+//fonction pour mélanger les questions et en choisir 
+function shuffleQuestions(questions, nombreQuestions) {
     var shuffledQuestions = [];
-    for (var i = 0; i < 50; i++) {
+    //vérification du nombre de questions
+    if (nombreQuestions > questions.length) {
+        nombreQuestions = questions.length;
+    }
+    for (var i = 0; i < nombreQuestions; i++) {
         var randomIndex = Math.floor(Math.random() * questions.length);
         shuffledQuestions.push(questions[randomIndex]);
         questions.splice(randomIndex, 1);
@@ -69,63 +73,91 @@ function shuffleQuestions(questions) {
 }
 
 //fonction pour commencer le quizz
-function GetDataQuizz() {
+function GetDataQuizz(nombreQuestions) {
     var questions = getQuestions();
-    var shuffledQuestions = shuffleQuestions(questions);
+    var shuffledQuestions = shuffleQuestions(questions, nombreQuestions);
     return shuffledQuestions;
 }
 
-//fonction pour afficher les questions et réponses, si appelé avec un paramètre, affiche la question suivante
+
+// Fonction pour initialiser le quizz
+function setupQuiz() {
+    // Ajouter un formulaire pour choisir le nombre de questions
+    var numQuestionsForm = document.createElement("form");
+    numQuestionsForm.innerHTML = "<label for='numQuestions'>Nombre de questions :</label>";
+    numQuestionsForm.innerHTML += "<input type='number' id='numQuestions' min='1' max='168' value='10'>";
+    numQuestionsForm.innerHTML += "<button type='submit'>Commencer le quizz</button>";
+    numQuestionsForm.addEventListener("submit", startQuiz);
+    
+    var main = document.querySelector("main");
+    main.appendChild(numQuestionsForm);
+}
+
+// Fonction pour démarrer le quizz
+function startQuiz(event) {
+    event.preventDefault();
+    var numQuestions = parseInt(document.getElementById("numQuestions").value);
+    shuffledQuestions = GetDataQuizz(numQuestions); // Passer le nombre de questions choisi
+    localStorage.setItem("score", 0);
+    localStorage.setItem("currentQuestionIndex", 0);
+    displayQuestions();
+}
+
+// Fonction pour afficher les questions et réponses
 function displayQuestions() {
+    // Récupérer l'élément div pour afficher le quizz
     var div = document.getElementById("quizz");
     div.innerHTML = "";
+
+    // Vérifier si la correction des réponses fausses est activée
+    var showCorrections = localStorage.getItem("showCorrections");
+    
+    // Afficher la question en cours
+    var currentQuestionIndex = localStorage.getItem("currentQuestionIndex");
+    var question = shuffledQuestions[currentQuestionIndex];
     var divQuestion = document.createElement("div");
     divQuestion.setAttribute("id", "question");
     div.appendChild(divQuestion);
     
-    // Check if there is a current question index stored in local storage
-    var currentQuestionIndex = localStorage.getItem("currentQuestionIndex");
-    if (currentQuestionIndex === null) {
-        // If no current question index is stored, set it to 0
-        currentQuestionIndex = 0;
-    }
-    //affiche le numéro de la question en cours sur le nombre total de questions
+    // Afficher le numéro de la question
     var questionNumber = document.createElement("p");
-    questionNumber.innerHTML = "Question " + (parseInt(currentQuestionIndex) + 1) + " / 50";
+    questionNumber.innerHTML = "Question " + (parseInt(currentQuestionIndex) + 1) + " / " + shuffledQuestions.length;
     divQuestion.appendChild(questionNumber);
-    var question = document.createElement("p");
-    question.innerHTML = shuffledQuestions[currentQuestionIndex].question;
-    divQuestion.appendChild(question);
-    if (shuffledQuestions[currentQuestionIndex].type == 2) {
+    
+    // Afficher la question
+    var questionText = document.createElement("p");
+    questionText.innerHTML = question.question;
+    divQuestion.appendChild(questionText);
+    
+    // Afficher l'image si le type de question est une image
+    if (question.type == 2) {
         var image = document.createElement("img");
-        image.setAttribute("src", shuffledQuestions[currentQuestionIndex].image);
+        image.setAttribute("src", question.image);
         divQuestion.appendChild(image);
     }
+    
+    // Afficher les réponses
     var divReponses = document.createElement("div");
     divReponses.setAttribute("class", "reponses");
     divQuestion.appendChild(divReponses);
-    for (var i = 0; i < shuffledQuestions[currentQuestionIndex].reponses.length; i++) {
+    for (var i = 0; i < question.reponses.length; i++) {
         var divReponse = document.createElement("div");
         divReponse.setAttribute("class", "reponse");
         divReponses.appendChild(divReponse);
         
         var input = document.createElement("input");
-        //définition des attributs de l'input suivant le nombre de réponses
-        if (shuffledQuestions[currentQuestionIndex].nbReponsesCorrectes == 1) {
-            input.setAttribute("type", "radio");
-        }
-        else {
-            input.setAttribute("type", "checkbox");
-        }
+        input.setAttribute("type", question.nbReponsesCorrectes == 1 ? "radio" : "checkbox");
         input.setAttribute("name", "reponse");
         input.setAttribute("id", "reponse" + i);
         divReponse.appendChild(input);
         
         var label = document.createElement("label");
         label.setAttribute("for", "reponse" + i);
-        label.innerHTML = shuffledQuestions[currentQuestionIndex].reponses[i];
+        label.innerHTML = question.reponses[i];
         divReponse.appendChild(label);
     }
+    
+    // Afficher le bouton Valider
     var divReponse = document.createElement("div");
     divReponse.setAttribute("id", "reponses");
     div.appendChild(divReponse);
@@ -133,54 +165,53 @@ function displayQuestions() {
     reponse.innerHTML = "Valider";
     reponse.addEventListener("click", checkAnswer);
     divReponse.appendChild(reponse);
+    
+    // Afficher les corrections si activées
+    if (showCorrections === "true") {
+        var corrections = document.createElement("p");
+        corrections.innerHTML = "Réponses correctes :";
+        for (var i = 0; i < question.reponsesCorrectes.length; i++) {
+            corrections.innerHTML += " " + question.reponsesCorrectes[i];
+        }
+        divReponse.appendChild(corrections);
+    }
 }
 
-//fonction pour vérifier la réponse donnée, enregistrer le score et afficher la question suivante
+// Fonction pour vérifier la réponse donnée
 function checkAnswer() {
     var reponses = document.getElementsByName("reponse");
     var reponsesCorrectes = shuffledQuestions[localStorage.getItem("currentQuestionIndex")].reponsesCorrectes;
-    var score = localStorage.getItem("score");
+    var score = parseInt(localStorage.getItem("score"));
     var nbReponsesCorrectes = 0;
     for (var i = 0; i < reponses.length; i++) {
-        if (reponses[i].checked) {
-            if (reponsesCorrectes.indexOf(shuffledQuestions[localStorage.getItem("currentQuestionIndex")].reponses[i]) != -1) {
-                nbReponsesCorrectes++;
-            }
+        if (reponses[i].checked && reponsesCorrectes.includes(reponses[i].nextSibling.textContent)) {
+            nbReponsesCorrectes++;
         }
     }
     if (nbReponsesCorrectes == shuffledQuestions[localStorage.getItem("currentQuestionIndex")].nbReponsesCorrectes) {
         score++;
     }
     localStorage.setItem("score", score);
-    // Store the updated current question index in local storage
-    var nextQuestionIndex = localStorage.getItem("currentQuestionIndex");
-    nextQuestionIndex++;
+    // Stocker l'index de la prochaine question dans le stockage local
+    var nextQuestionIndex = parseInt(localStorage.getItem("currentQuestionIndex")) + 1;
     localStorage.setItem("currentQuestionIndex", nextQuestionIndex);
-    // Check if the current question index is less than 50
-    if (localStorage.getItem("currentQuestionIndex") < 50) {
+    // Afficher la prochaine question ou le score final
+    if (nextQuestionIndex < shuffledQuestions.length) {
         displayQuestions();
-    }
-    else {
+    } else {
         displayScore();
     }
 }
 
-//fonction pour afficher le score
+// Fonction pour afficher le score
 function displayScore() {
     var div = document.getElementById("quizz");
     div.innerHTML = "";
     var score = localStorage.getItem("score");
     var p = document.createElement("p");
-    p.innerHTML = "Score : " + score + " / 50";
+    p.innerHTML = "Score : " + score + " / " + shuffledQuestions.length;
     div.appendChild(p);
     var p = document.createElement("p");
-    p.innerHTML = "Nombre de réponses correctes : " + score;
-    div.appendChild(p);
-    var p = document.createElement("p");
-    p.innerHTML = "Nombre de réponses incorrectes : " + (50 - score);
-    div.appendChild(p);
-    var p = document.createElement("p");
-    p.innerHTML = "Pourcentage de réussite : " + (score / 50 * 100) + " %";
+    p.innerHTML = "Pourcentage de réussite : " + (score / shuffledQuestions.length * 100) + " %";
     div.appendChild(p);
 }
-
