@@ -106,6 +106,11 @@ function displayQuestions() {
     var question = document.createElement("p");
     question.innerHTML = shuffledQuestions[currentQuestionIndex].question;
     divQuestion.appendChild(question);
+    if (shuffledQuestions[currentQuestionIndex].type == 2) {
+        var image = document.createElement("img");
+        image.setAttribute("src", shuffledQuestions[currentQuestionIndex].image);
+        divQuestion.appendChild(image);
+    }
     for (var i = 0; i < shuffledQuestions[currentQuestionIndex].reponses.length; i++) {
         var reponse = document.createElement("input");
         //définition des attributs de l'input suivant le nombre de réponses
@@ -123,12 +128,6 @@ function displayQuestions() {
         label.innerHTML = shuffledQuestions[currentQuestionIndex].reponses[i];
         divQuestion.appendChild(label);
     }
-    if (shuffledQuestions[currentQuestionIndex].type == 2) {
-        var image = document.createElement("img");
-        image.setAttribute("src", shuffledQuestions[currentQuestionIndex].image);
-        divQuestion.appendChild(image);
-    }
-    
     var divReponse = document.createElement("div");
     divReponse.setAttribute("id", "reponses");
     div.appendChild(divReponse);
