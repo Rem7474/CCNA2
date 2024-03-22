@@ -134,7 +134,8 @@ function displayQuestions() {
     reponse.addEventListener("click", checkAnswer);
     divReponse.appendChild(reponse);
     // Store the updated current question index in local storage
-    localStorage.setItem("currentQuestionIndex", currentQuestionIndex++);
+    currentQuestionIndex++;
+    localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
 }
 
 //fonction pour vérifier la réponse donnée, enregistrer le score et afficher la question suivante
