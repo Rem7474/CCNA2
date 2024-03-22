@@ -1,5 +1,4 @@
 /* Styles généraux */
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -33,7 +32,6 @@ footer {
 }
 
 /* Styles pour le quizz */
-
 #quizz {
     border: 1px solid #ccc;
     padding: 20px;
@@ -43,8 +41,12 @@ footer {
     margin-bottom: 20px;
 }
 
-input[type="checkbox"] {
-    margin-right: 10px;
+.reponses .reponse {
+    margin-bottom: 10px;
+}
+
+.reponses label {
+    display: block;
 }
 
 #reponses button {
@@ -53,14 +55,30 @@ input[type="checkbox"] {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 #reponses button:hover {
     background-color: #555;
 }
 
-/* Styles pour les boutons de choix de question */
+/* Styles pour la section des corrections */
+#corrections {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+}
 
+#correct-answers p {
+    margin-bottom: 10px;
+}
+
+#correct-answers span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Styles pour les boutons de choix de question */
 #next, #reponse {
     background-color: #333;
     color: #fff;
