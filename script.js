@@ -231,7 +231,7 @@ function NextAnswer() {
     var nextQuestionIndex = parseInt(currentQuestionIndex) + 1;
     localStorage.setItem("currentQuestionIndex", nextQuestionIndex);
     //supprimer les réponses correctes
-    var correctionsSection = document.getElementById("corrections");
+    var correctionsSection = document.getElementById("correct-answers");
     correctionsSection.innerHTML = "";
     // Vérifier si le quizz est terminé
     
