@@ -88,16 +88,10 @@ function displayQuestions() {
     if (currentQuestionIndex === null) {
         // If no current question index is stored, set it to 0
         currentQuestionIndex = 0;
-    } else {
-        // If a current question index is stored, increment it
-        currentQuestionIndex++;
     }
-    
-    // Store the updated current question index in local storage
-    localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
     //affiche le numéro de la question en cours sur le nombre total de questions
     var questionNumber = document.createElement("p");
-    questionNumber.innerHTML = "Question " + (currentQuestionIndex + 1) + " / 50";
+    questionNumber.innerHTML = "Question " + (currentQuestionIndex+1) + " / 50";
     divQuestion.appendChild(questionNumber);
     var question = document.createElement("p");
     question.innerHTML = shuffledQuestions[currentQuestionIndex].question;
@@ -139,6 +133,8 @@ function displayQuestions() {
     reponse.innerHTML = "Valider";
     reponse.addEventListener("click", checkAnswer);
     divReponse.appendChild(reponse);
+    // Store the updated current question index in local storage
+    localStorage.setItem("currentQuestionIndex", currentQuestionIndex++);
 }
 
 //fonction pour vérifier la réponse donnée, enregistrer le score et afficher la question suivante
