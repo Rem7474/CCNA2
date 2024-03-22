@@ -155,6 +155,31 @@ function checkAnswer() {
         score++;
     }
     localStorage.setItem("score", score);
-    displayQuestions();
+    // Check if the current question index is less than 50
+    if (localStorage.getItem("currentQuestionIndex") < 50) {
+        displayQuestions();
+    }
+    else {
+        displayScore();
+    }
+}
+
+//fonction pour afficher le score
+function displayScore() {
+    var div = document.getElementById("quizz");
+    div.innerHTML = "";
+    var score = localStorage.getItem("score");
+    var p = document.createElement("p");
+    p.innerHTML = "Score : " + score + " / 50";
+    div.appendChild(p);
+    var p = document.createElement("p");
+    p.innerHTML = "Nombre de réponses correctes : " + score;
+    div.appendChild(p);
+    var p = document.createElement("p");
+    p.innerHTML = "Nombre de réponses incorrectes : " + (50 - score);
+    div.appendChild(p);
+    var p = document.createElement("p");
+    p.innerHTML = "Pourcentage de réussite : " + (score / 50 * 100) + " %";
+    div.appendChild(p);
 }
 
