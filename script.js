@@ -7,11 +7,10 @@
 //affichage du pourcentage de réussite
 
 //event listener pour le chargement de la page
+var shuffledQuestions = GetDataQuizz();
 localStorage.setItem("score", 0);
 localStorage.setItem("currentQuestionIndex", 0);
 document.addEventListener("DOMContentLoaded", displayQuestions);
-document.getElementById("next").addEventListener("click", displayQuestions);
-var shuffledQuestions = GetDataQuizz();
 //fonction pour récupérer les données du fichier csv
 function getCSVData() {
     //récupération du fichier csv (décodage ANSI)
