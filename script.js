@@ -7,6 +7,8 @@
 //affichage du pourcentage de réussite
 
 //event listener pour le chargement de la page
+localStorage.setItem("score", 0);
+localStorage.setItem("currentQuestionIndex", 0);
 document.addEventListener("DOMContentLoaded", displayQuestions);
 document.getElementById("next").addEventListener("click", displayQuestions);
 
@@ -74,8 +76,6 @@ function displayQuestions() {
 
 //fonction pour commencer le quizz
 function GetDataQuizz() {
-    localStorage.setItem("score", 0);
-    localStorage.setItem("currentQuestionIndex", 0);
     var questions = getQuestions();
     var shuffledQuestions = shuffleQuestions(questions);
     return shuffledQuestions;
