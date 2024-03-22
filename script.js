@@ -35,16 +35,16 @@ function getQuestions() {
             nbReponses: data[i][2],
             nbReponsesCorrectes: data[i][3],
             reponses: [],
-            reponsesCorrectes: data[data[i][data[i].length - 2] + 3],
+            reponsesCorrectes: [],
             image: data[i][data[i].length - 1]
         }
         for (var j = 4; j < 4+question.nbReponsesCorrectes; j++) {
-            if (j < 4 + question.nbReponses) {
-                question.reponses.push(data[i][j]);
-            } else {
-                question.reponsesCorrectes.push(data[i][j]);
-            }
+            question.reponses.push(data[i][j]);
         }
+        for (var j = 4+question.nbReponsesCorrectes; j < 4+question.nbReponses; j++) {
+            question.reponsesCorrectes.push(data[i][j]);
+        }
+
 
         questions.push(question);
     }
