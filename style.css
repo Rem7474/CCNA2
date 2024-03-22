@@ -98,3 +98,8 @@ button:hover {
 #corrections, #questions {
     display: none;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+}
