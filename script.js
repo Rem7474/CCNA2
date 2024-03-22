@@ -182,7 +182,8 @@ function displayQuestions() {
 // Fonction pour vérifier la réponse donnée
 function checkAnswer() {
     var reponses = document.getElementsByName("reponse");
-    var reponsesCorrectes = shuffledQuestions[localStorage.getItem("currentQuestionIndex")].reponsesCorrectes;
+    var currentQuestionIndex=localStorage.getItem("currentQuestionIndex");
+    var reponsesCorrectes = shuffledQuestions[currentQuestionIndex].reponsesCorrectes;
     var score = parseInt(localStorage.getItem("score"));
     var nbReponsesCorrectes = 0;
     for (var i = 0; i < reponses.length; i++) {
@@ -190,21 +191,13 @@ function checkAnswer() {
             nbReponsesCorrectes++;
         }
     }
-    if (nbReponsesCorrectes == shuffledQuestions[localStorage.getItem("currentQuestionIndex")].nbReponsesCorrectes) {
+    if (nbReponsesCorrectes == shuffledQuestions[currentQuestionIndex].nbReponsesCorrectes) {
         score++;
+        localStorage.setItem("score", score);
+        NextAnswer();
     } else {
         // Afficher les réponses correctes en cas de réponse incorrecte
         displayCorrectAnswers(reponsesCorrectes);
-    }
-    localStorage.setItem("score", score);
-    // Stocker l'index de la prochaine question dans le stockage local
-    var nextQuestionIndex = parseInt(localStorage.getItem("currentQuestionIndex")) + 1;
-    localStorage.setItem("currentQuestionIndex", nextQuestionIndex);
-    // Afficher la prochaine question ou le score final
-    if (nextQuestionIndex < shuffledQuestions.length) {
-        displayQuestions();
-    } else {
-        displayScore();
     }
 }
 
@@ -216,7 +209,7 @@ function displayCorrectAnswers(correctAnswers) {
     correctAnswersDiv.innerHTML = "";
     var p = document.createElement("p");
     p.innerHTML = "Réponses correctes :";
-    correctAnswers.forEach(function(answer) {
+    correctAnswers.forEach(function (answer) {
         var span = document.createElement("span");
         span.textContent = answer;
         p.appendChild(span);
@@ -225,8 +218,28 @@ function displayCorrectAnswers(correctAnswers) {
     // Retirer la virgule supplémentaire à la fin
     p.innerHTML = p.innerHTML.slice(0, -2);
     correctAnswersDiv.appendChild(p);
-}
 
+    // Ajout d'un bouton "Suivant"
+    var nextButton = document.createElement("button");
+    nextButton.textContent = "Suivant";
+    nextButton.addEventListener("click", NextAnswer);
+    correctAnswersDiv.appendChild(nextButton);
+}
+function NextAnswer() {
+    // Stocker l'index de la prochaine question dans le stockage local
+    var nextQuestionIndex = parseInt(currentQuestionIndex) + 1;
+    localStorage.setItem("currentQuestionIndex", nextQuestionIndex);
+    //supprimer les réponses correctes
+    var correctionsSection = document.getElementById("corrections");
+    correctionsSection.innerHTML = "";
+    // Vérifier si le quizz est terminé
+    var currentQuestionIndex = localStorage.getItem("currentQuestionIndex");
+    if (currentQuestionIndex < shuffledQuestions.length) {
+        displayQuestions();
+    } else {
+        displayScore();
+    }
+}
 
 // Fonction pour afficher le score
 function displayScore() {
