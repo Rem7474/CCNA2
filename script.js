@@ -213,12 +213,12 @@ function displayCorrectAnswers(correctAnswers) {
     var correctAnswersDiv = document.getElementById("correct-answers");
     correctAnswersDiv.innerHTML = "";
     var p = document.createElement("p");
-    p.innerHTML = "Réponses correctes :";
+    p.textContent = "Réponses correctes :";
     correctAnswers.forEach(function (answer) {
         var span = document.createElement("span");
         span.textContent = answer;
         p.appendChild(span);
-        p.innerHTML += ", ";
+        p.textContent += ", ";
     });
     // Retirer la virgule supplémentaire à la fin
     p.innerHTML = p.innerHTML.slice(0, -2);
