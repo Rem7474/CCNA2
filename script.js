@@ -188,7 +188,7 @@ function checkAnswer() {
     var score = parseInt(localStorage.getItem("score"));
     var nbReponsesCorrectes = 0;
     for (var i = 0; i < reponses.length; i++) {
-        if (reponses[i].checked && reponsesCorrectes.includes(reponses[i].nextSibling.textContent)) {
+        if (reponses[i].checked && reponsesCorrectes.includes(reponses[i].nextSibling.innerHTML)) {
             nbReponsesCorrectes++;
         }
     }
