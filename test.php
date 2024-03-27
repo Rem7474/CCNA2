@@ -14,7 +14,9 @@ if (isset($_GET['note_moyenne'])){
     $N=$note_moyenne+($note_exam);
     //calcul de la note minimale à l'examen (N>=70)
     $note_exam=70-$note_moyenne;
-    echo "Note minimale à l'examen : $note_exam %";
+    $note_exam_tp=$note_exam-$note_moyenne;
+    echo "Note minimale à l'examen (TP + quizz) : $note_exam %";
+    echo "Si vous avez 70/100 au quizz, il vous faudra $note_exam_tp % au TP";
 }
 else{
     //formulaire de saisie des notes
