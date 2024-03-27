@@ -22,7 +22,7 @@ if (isset($_GET['note_moyenne'])){
     $note_exam_tp_2=round($note_exam_tp_2,2);
     echo "Note minimale à l'examen (TP + quizz) : $note_exam % <br>";
     echo "Si vous avez 70/100 au quizz, il vous faudra $note_exam_tp % au TP<br>";
-    echo "<br>Si vous avez 85/100 au quizz, il vous faudra $note_exam_tp_2 % au TP";
+    echo "Si vous avez 85/100 au quizz, il vous faudra $note_exam_tp_2 % au TP";
 }
 else{
     //formulaire de saisie des notes
