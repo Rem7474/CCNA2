@@ -15,8 +15,14 @@ if (isset($_GET['note_moyenne'])){
     $note_exam=(0.34*$note_moyenne-70)/-0.33;
     $note_exam=$note_exam/2; //conversion de la note sur 200 en note total sur 100
     $note_exam_tp=((0.34*$note_moyenne-70)/-0.33)-70;
+    $note_exam_tp_2=((0.34*$note_moyenne-70)/-0.33)-85;
+    //arrondie a 2 chiffres apres la virgule
+    $note_exam=round($note_exam,2);
+    $note_exam_tp=round($note_exam_tp,2);
+    $note_exam_tp_2=round($note_exam_tp_2,2);
     echo "Note minimale à l'examen (TP + quizz) : $note_exam % <br>";
-    echo "Si vous avez 70/100 au quizz, il vous faudra $note_exam_tp % au TP";
+    echo "Si vous avez 70/100 au quizz, il vous faudra $note_exam_tp % au TP<br>";
+    echo "<br>Si vous avez 85/100 au quizz, il vous faudra $note_exam_tp_2 % au TP";
 }
 else{
     //formulaire de saisie des notes
