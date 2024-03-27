@@ -10,7 +10,7 @@
 if (isset($_GET['note_moyenne'])){
     $note_moyenne=$_GET['note_moyenne'];
     //conversion de la note sur 20 en note sur 34
-    $note_moyenne=($note_moyenne/20)*34;
+    $note_moyenne=($note_moyenne/20)*100;
     //calcul de la note minimale à l'examen (N>=70)
     $note_exam=(0.34*$note_moyenne-70)/-0.33;
     $note_exam=$note_exam/2; //conversion de la note sur 200 en note total sur 100
