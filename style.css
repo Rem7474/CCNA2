@@ -6,6 +6,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color: #f4f4f4;
 }
 
 header, footer {
@@ -34,9 +35,11 @@ h2 {
 
 /* Styles pour le quizz */
 #quizz {
-    border: 1px solid #ccc;
     padding: 20px;
     max-width: 900px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #question p {
