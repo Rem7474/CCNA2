@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calculatrice note finale — CCNA2</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#94a3b8;--accent:#4f46e5;--glass:rgba(255,255,255,0.04)}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,#071127 0%, #071b2a 60%);color:#e6eef8}
+    .wrap{max-width:920px;margin:48px auto;padding:24px}
+    header{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+    header h1{margin:0;font-size:1.4rem}
+    .card{background:linear-gradient(180deg,var(--glass),rgba(255,255,255,0.02));padding:20px;border-radius:12px;box-shadow:0 6px 24px rgba(6,8,23,0.6);}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:18px}
+    .control{margin-bottom:14px}
+    label{display:block;font-weight:600;margin-bottom:6px}
+    .slider-row{display:flex;gap:12px;align-items:center}
+    input[type=range]{flex:1}
+    .value-badge{min-width:64px;text-align:center;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--muted)}
+    .result{font-size:1.05rem;margin-bottom:8px}
+    .muted{color:var(--muted);font-size:0.92rem}
+    .help{font-size:0.9rem;color:var(--muted);margin-top:10px}
+    .btn{display:inline-block;background:var(--accent);color:white;padding:8px 12px;border-radius:8px;text-decoration:none}
+    @media (max-width:860px){.grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Calculatrice note finale</h1>
+      <a href="index.html" class="btn">← Retour</a>
+    </header>
+
+    <main class="card">
+      <p class="muted">Cette page remplace l'ancien script PHP. Utilisez les sliders pour saisir vos notes et voir la note minimale attendue à l'examen pour atteindre N ≥ 70 (seuil de réussite utilisé ici).</p>
+
+      <div class="grid">
+        <div>
+          <div class="control">
+            <label for="noteAnnee">Note de l'année (sur 20)</label>
+            <div class="slider-row">
+              <input id="noteAnnee" type="range" min="0" max="20" step="0.1" value="12">
+              <div class="value-badge" id="noteAnneeVal">12.0</div>
+            </div>
+          </div>
+
+          <div class="control">
+            <label for="quiz">Score Quizz (sur 100)</label>
+            <div class="slider-row">
+              <input id="quiz" type="range" min="0" max="100" step="1" value="70">
+              <div class="value-badge" id="quizVal">70</div>
+            </div>
+            <div class="help">Le quizz correspond ici à la partie «quizz» / théorique qui est combinée avec le TP pour former la note d'examen.</div>
+          </div>
+
+          <div class="control">
+            <label for="target">Seuil cible (N) — par défaut 70</label>
+            <div class="slider-row">
+              <input id="target" type="range" min="50" max="90" step="1" value="70">
+              <div class="value-badge" id="targetVal">70</div>
+            </div>
+          </div>
+
+        </div>
+
+        <aside>
+          <div class="card" style="padding:14px;">
+            <h3 style="margin-top:0">Résultats</h3>
+            <div class="result" id="combinedResult">Note minimale au total (TP + quizz) : —</div>
+            <div class="result" id="tpNeeded">Si vous avez <span id="quizSample">70</span>/100 au quizz, il vous faudra <strong id="tpForQuiz">—</strong> % au TP</div>
+            <div class="result">Exemple avec 85/100 au quizz : <strong id="tpForQuiz85">—</strong> % au TP</div>
+
+            <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:12px 0">
+            <div class="muted">Explication courte :</div>
+            <ul class="muted">
+              <li>Formule utilisée : N = 0.34*M + 0.33*(TP + Quizz)</li>
+              <li>M = note de l'année convertie en % (note/20 × 100)</li>
+            </ul>
+            <div style="margin-top:10px" class="muted">Si la valeur demandée dépasse 100% ou est négative, la feuille indique si c'est impossible ou si vous êtes déjà au-dessus du seuil.</div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Elements
+    const noteAnnee = document.getElementById('noteAnnee');
+    const noteAnneeVal = document.getElementById('noteAnneeVal');
+    const quiz = document.getElementById('quiz');
+    const quizVal = document.getElementById('quizVal');
+    const target = document.getElementById('target');
+    const targetVal = document.getElementById('targetVal');
+
+    const combinedResult = document.getElementById('combinedResult');
+    const tpForQuiz = document.getElementById('tpForQuiz');
+    const tpForQuiz85 = document.getElementById('tpForQuiz85');
+    const quizSample = document.getElementById('quizSample');
+
+    function pct(x){return Math.round(x*100)/100}
+
+    function compute(){
+      const m = parseFloat(noteAnnee.value); // 0-20
+      const q = parseFloat(quiz.value); // 0-100
+      const Ntarget = parseFloat(target.value); // e.g., 70
+
+      noteAnneeVal.textContent = parseFloat(m).toFixed(1);
+      quizVal.textContent = q.toFixed(0);
+      targetVal.textContent = Ntarget.toFixed(0);
+
+      // Convert M to percent like original script
+      const M_percent = (m/20)*100;
+
+      // Solve for E = TP + Quizz (expressed in same 0-100 scale per component)
+      // From N = 0.34*M + 0.33*E  =>  E_required = (N - 0.34*M)/0.33
+      const E_required = (Ntarget - 0.34*M_percent)/0.33;
+
+      // The original script displayed E_required/2 as "Note minimale à l'examen (TP + quizz)".
+      // We'll show both a clear value and the legacy value for compatibility.
+      const legacy_display = pct(E_required/2);
+
+      // Combined display: interpret E_required as total percentage (TP + Quizz) on 0..200 possibly;
+      // but show the computed raw E_required too for clarity.
+      const eText = (Number.isFinite(E_required) ? pct(E_required) : '—');
+      combinedResult.innerHTML = `Note minimale au total (TP + quizz) : <strong>${eText} %</strong> <div class="muted">(valeur brute calculée) — équivalent legacy affiché: <strong>${legacy_display} %</strong></div>`;
+
+      // Given user's quiz q, compute TP needed: TP_needed = E_required - q
+      const TP_needed = E_required - q;
+      const TP_needed_text = !Number.isFinite(TP_needed) ? '—' : (TP_needed <= 0 ? '0 (déjà suffisant)' : (TP_needed > 100 ? `${pct(TP_needed)} (impossible > 100%)` : pct(TP_needed)));
+      tpForQuiz.textContent = TP_needed_text;
+
+      // Example for 85
+      const TP85 = E_required - 85;
+      const TP85_text = !Number.isFinite(TP85) ? '—' : (TP85 <= 0 ? '0 (déjà suffisant)' : (TP85 > 100 ? `${pct(TP85)} (impossible > 100%)` : pct(TP85)));
+      tpForQuiz85.textContent = TP85_text;
+      quizSample.textContent = q.toFixed(0);
+    }
+
+    // Wire events
+    [noteAnnee, quiz, target].forEach(el => el.addEventListener('input', compute));
+
+    // Initial compute
+    compute();
+  </script>
+</body>
+</html>

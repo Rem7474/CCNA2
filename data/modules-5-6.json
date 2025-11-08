@@ -1,0 +1,737 @@
+[
+  {
+    "question": "1. Quels sont les trois composants qui sont combinés pour former un ID de pont ?",
+    "answers": [
+      "Coût",
+      "ID système étendu",
+      "Adresse IP",
+      "ID de port",
+      "Priorité du pont",
+      "Adresse MAC"
+    ],
+    "correctAnswers": [
+      1,
+      4,
+      5
+    ],
+    "image": null,
+    "type": "text",
+    "id": 1
+  },
+  {
+    "question": "3. Quels sont les deux états de port dans lesquels un commutateur apprend les adresses MAC et traite les trames BPDU sur un réseau PVST ? (Choisissez deux réponses.)",
+    "answers": [
+      "blocage",
+      "transmission",
+      "désactivé",
+      "écoute",
+      "apprentissage"
+    ],
+    "correctAnswers": [
+      1,
+      4
+    ],
+    "image": null,
+    "type": "text",
+    "id": 2
+  },
+  {
+    "question": "4. Si aucune priorité de pont n’est configurée dans le protocole PVST, quels critères sont pris en considération lors de la sélection du pont racine ?",
+    "answers": [
+      "adresse IP la plus élevée",
+      "adresse MAC la plus élevée",
+      "adresse MAC la plus petite",
+      "adresse IP la plus petite"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "image": null,
+    "type": "text",
+    "id": 3
+  },
+  {
+    "question": "5. Quelles sont les deux fonctionnalités de conception de réseau qui nécessitent le protocole STP (Spanning Tree Protocol) pour assurer un fonctionnement correct du réseau ? (Choisissez deux réponses.)",
+    "answers": [
+      "routes par défaut statiques",
+      "implémentation de VLAN pour contenir des diffusions",
+      "liaisons redondantes entre des commutateurs de couche 2",
+      "routages dynamiques à état de liens fournissant des routes redondantes",
+      "suppression de points de défaillance uniques avec plusieurs commutateurs de couche 2"
+    ],
+    "correctAnswers": [
+      2,
+      4
+    ],
+    "image": null,
+    "type": "text",
+    "id": 4
+  },
+  {
+    "question": "6. Quel est le résultat d’une tempête de diffusion de couche 2 ?",
+    "answers": [
+      "6/CD amène chaque hôte à continuer à transmettre des trames.",
+      "Les requêtes de diffusion ARP sont renvoyées à l’hôte émetteur.",
+      "Les routeurs prennent le relais pour l’acheminement des trames en raison de l’encombrement des commutateurs.",
+      "Le nouveau trafic est rejeté par le commutateur parce qu’il ne peut pas être traité."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 5
+  },
+  {
+    "question": "8. Lorsque la commande show spanning-tree vlan 33 est exécutée sur un commutateur, trois ports apparaissent en état de transmission. Quels sont les deux rôles de port dans lesquels ces interfaces peuvent fonctionner à partir de l’état de transmission ? (Choisissez deux réponses.)",
+    "answers": [
+      "alternatif",
+      "désactivé",
+      "bloqué",
+      "désigné",
+      "racine"
+    ],
+    "correctAnswers": [
+      3,
+      4
+    ],
+    "image": null,
+    "type": "text",
+    "id": 6
+  },
+  {
+    "question": "9. Un ensemble de commutateurs est connecté au sein d’une topologie LAN. Quelle valeur de priorité de pont STP réduit la probabilité que le commutateur soit sélectionné en tant que racine ?",
+    "answers": [
+      "61440",
+      "4096",
+      "32768",
+      "65535"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "image": null,
+    "type": "text",
+    "id": 7
+  },
+  {
+    "question": "10. Quelle est la fonction du protocole STP dans un réseau évolutif ?",
+    "answers": [
+      "Il combine plusieurs trunks de commutation sous forme de liaison logique unique pour les bandes passantes élevées.",
+      "Il protège la périphérie du réseau d’entreprise contre les actions malveillantes.",
+      "Il désactive les chemins redondants pour éliminer les boucles de couche 2.",
+      "Il réduit la taille du domaine défaillant afin de limiter l’impact des défaillances."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "image": null,
+    "type": "text",
+    "id": 8
+  },
+  {
+    "question": "11. À quoi sert le protocole STP (Spanning Tree Protocol) ?",
+    "answers": [
+      "À empêcher les boucles de couche 2",
+      "À créer des domaines de diffusion plus petits",
+      "À empêcher les boucles de routage sur un routeur",
+      "À créer des domaines de collision plus petits",
+      "À permettre aux appareils Cisco d’échanger des mises à jour de table de routage"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "image": null,
+    "type": "text",
+    "id": 9
+  },
+  {
+    "question": "12. Quels sont les deux états de ports PVST+ permettant l’apprentissage des adresses MAC ? Citez-en deux.",
+    "answers": [
+      "Transmission",
+      "en apprentissage",
+      "Écoute",
+      "désactivé",
+      "Blocage"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "image": null,
+    "type": "text",
+    "id": 10
+  },
+  {
+    "question": "13. Reportez-vous à l’illustration. Quel commutateur sera le pont racine au terme du processus de sélection ?",
+    "answers": [
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "image": null,
+    "type": "text",
+    "id": 11
+  },
+  {
+    "question": "14. Quels sont les deux inconvénients que présentent la désactivation de Spanning Tree et l’utilisation de plusieurs chemins sur le réseau commuté de couche 2 ? (Choisissez deux propositions.)",
+    "answers": [
+      "Le système de sécurité des ports arrête tous les ports auxquels des appareils sont reliés.",
+      "Le commutateur joue le rôle de hub.",
+      "Des trames de diffusion sont transmises indéfiniment.",
+      "La sécurité des ports devient instable.",
+      "La table des adresses MAC devient instable."
+    ],
+    "correctAnswers": [
+      2,
+      4
+    ],
+    "image": null,
+    "type": "text",
+    "id": 12
+  },
+  {
+    "question": "15. Parmi les affirmations concernant l’utilisation du protocole PAgP pour créer des EtherChannels, laquelle est correcte ?",
+    "answers": [
+      "Il requiert davantage de liaisons physiques que le protocole LACP.",
+      "Il rend obligatoire l’utilisation d’un nombre pair de ports (2, 4, 6, etc.) pour l’agrégation.",
+      "Il augmente le nombre de ports participant au Spanning Tree.",
+      "Il requiert le mode bidirectionnel simultané.",
+      "Il s’agit d’un protocole propriétaire Cisco."
+    ],
+    "correctAnswers": [
+      4
+    ],
+    "image": null,
+    "type": "text",
+    "id": 13
+  },
+  {
+    "question": "16. Citez deux conditions requises pour pouvoir configurer un EtherChannel entre deux commutateurs ? (Choisissez deux réponses.)",
+    "answers": [
+      "Toutes les interfaces doivent fonctionner dans le même mode bidirectionnel.",
+      "Différentes plages autorisées de VLAN doivent exister à chaque extrémité.",
+      "Les interfaces qui sont impliquées doivent être contiguës sur le commutateur.",
+      "Toutes les interfaces doivent fonctionner à la même vitesse.",
+      "Toutes les interfaces doivent être affectées à différents VLAN."
+    ],
+    "correctAnswers": [
+      0,
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 14
+  },
+  {
+    "question": "17. Examinez l’illustration. D’après le résultat affiché, quelles conclusions pouvez-vous tirer à propos de la liaison EtherChannel ?",
+    "answers": [
+      "La liaison EtherChannel est en panne.",
+      "La laison EtherChannel fonctionne à la fois sur la couche 2 et sur la couche 3.",
+      "Un protocole propriétaire de Cisco a été utilisé pour négocier la liaison EtherChannel.",
+      "Deux ports Gigabit Ethernet sont utilisés pour former la liaison EtherChannel."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "image": null,
+    "type": "text",
+    "id": 15
+  },
+  {
+    "question": "18. Quels sont les deux paramètres devant correspondre sur les ports des deux commutateurs afin de créer une liaison PAgP EtherChannel entre les commutateurs ? (Choisissez deux réponses.)",
+    "answers": [
+      "vitesse",
+      "adresse MAC",
+      "ID de port",
+      "informations VLAN",
+      "mode PAgP"
+    ],
+    "correctAnswers": [
+      0,
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 16
+  },
+  {
+    "question": "19. Examinez l’illustration. Un EtherChannel a été configuré entre les commutateurs S1 et S2, mais les interfaces ne forment pas d’EtherChannel. Quel est le problème ?",
+    "answers": [
+      "Les ports de commutation n’ont pas été configurés avec le mode vitesse et bidirectionnel.",
+      "L’EtherChannel n’a pas été configuré avec la même plage autorisée de VLAN sur chaque interface.",
+      "Les ports de commutation doivent être configurés en tant que ports d’accès en affectant un VLAN à chaque port.​",
+      "Le numéro interface port-channel doit être différent sur chaque commutateur."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "image": null,
+    "type": "text",
+    "id": 17
+  },
+  {
+    "question": "21. Citez deux modes de groupe de canaux plaçant une interface en état de négociation au moyen du protocole PAgP ? (Choisissez deux réponses.)",
+    "answers": [
+      "active",
+      "passive",
+      "auto",
+      "on",
+      "desirable"
+    ],
+    "correctAnswers": [
+      2,
+      4
+    ],
+    "image": null,
+    "type": "text",
+    "id": 18
+  },
+  {
+    "question": "22. Un administrateur réseau a configuré une liaison EtherChannel entre deux commutateurs par le biais de quatre liaisons trunk. Si l’interface physique pour l’une des liaisons trunk passe à l’état « down », qu’advient-il de l’EtherChannel ?",
+    "answers": [
+      "L’EtherChannel passera à l’état « down ».",
+      "Le protocole STP (Spanning Tree Protocol) recalculera les liaisons trunk restantes.",
+      "Le protocole STP (Spanning Tree Protocol) fera passer l’interface physique défaillante en mode d’acheminement.",
+      "L’EtherChannel restera fonctionnel."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 19
+  },
+  {
+    "question": "23. Reportez-vous à l’illustration. Un administrateur réseau est en train de configurer une liaison EtherChannel entre deux commutateurs, SW1 et SW2. Quelle instruction décrit l’effet après l’émission des commandes sur SW1 et SW2?",
+    "answers": [
+      "L’EtherChannel est établi sans négociation.",
+      "L’EtherChannel est établi après que SW1 initie la requête de liaison.",
+      "L’EtherChannel est établi après que SW2 a lancé la requête de liaison.",
+      "La liaison EtherChannel échoue."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 20
+  },
+  {
+    "question": "24. Reportez-vous à l’illustration. Un administrateur réseau est en train de configurer une liaison EtherChannel entre deux commutateurs, SW1 et SW2. Toutefois, la liaison EtherChannel ne parvient pas à établir. Quel changement de configuration corrigerait le problème?",
+    "answers": [
+      "Configurez le mode SW2 EtherChannel sur activé.",
+      "Configurez le mode SW2 EtherChannel sur automatique.",
+      "Configurez le mode SW1 EtherChannel sur activé.",
+      "Configurez le mode SW2 EtherChannel sur souhaitable."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 21
+  },
+  {
+    "question": "25. Un administrateur réseau a configuré une liaison EtherChannel avec trois interfaces entre deux commutateurs. Que se passe-t-il si l’une des trois interfaces tombe en panne ?",
+    "answers": [
+      "L’une des interfaces devient une liaison active pour le trafic de données, tandis que l’autre devient une liaison de secours.",
+      "Les deux interfaces restantes deviennent des liaisons distinctes entre les deux commutateurs.",
+      "Les deux interfaces restantes continuent d’équilibrer le trafic.",
+      "La liaison EtherChannel échoue."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "image": null,
+    "type": "text",
+    "id": 22
+  },
+  {
+    "question": "26. Quelle est l’une des conditions requises pour configurer un trunk EtherChannel entre deux commutateurs ?",
+    "answers": [
+      "Les interfaces qui participent au routage doivent être sur le même module sur un commutateur.",
+      "Les interfaces qui participent au routage doivent avoir le même numéro de VLAN sur les deux commutateurs.",
+      "La plage de VLAN autorisés doit être identique sur les deux commutateurs.",
+      "Les interfaces qui participent au routage doivent être physiquement contiguës sur un commutateur."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "image": null,
+    "type": "text",
+    "id": 23
+  },
+  {
+    "question": "27. Quelle est la description correcte d’une implémentation EtherChannel ?",
+    "answers": [
+      "PAgP ne peut pas être utilisé en même temps qu’EtherChannel.",
+      "Un port de trunking peut faire partie d’un groupement EtherChannel.",
+      "EtherChannel prend en charge jusqu’à dix liaisons distinctes.",
+      "EtherChannel fonctionne uniquement au niveau de la couche 2."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "image": null,
+    "type": "text",
+    "id": 24
+  },
+  {
+    "question": "28. Un commutateur est configuré pour exécuter STP. Quel terme décrit un champ utilisé pour spécifier un ID VLAN?",
+    "answers": [
+      "ID de pont",
+      "ID de port",
+      "Priorité du pont",
+      "ID système étendu"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 25
+  },
+  {
+    "question": "29. Reportez-vous à l’illustration. Quels sont les rôles possibles pour les ports A, B, C et D dans ce réseau RSTP ?",
+    "answers": [
+      "Alternatif, désigné, racine, racine",
+      "Désigné, racine, alternatif, racine",
+      "Alternatif, racine, désigné, racine",
+      "Désigné, alternatif, racine, racine"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "image": null,
+    "type": "text",
+    "id": 26
+  },
+  {
+    "question": "30. Examinez l’illustration. Quelle technologie de commutation autorise l’agrégation de chaque liaison de commutateur de couche d’accès afin de fournir davantage de bande passante entre chaque commutateur de couche 2 et le commutateur de couche 3 ?",
+    "answers": [
+      "Trunking",
+      "HSRP",
+      "EtherChannel",
+      "PortFast"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "image": null,
+    "type": "text",
+    "id": 27
+  },
+  {
+    "question": "31. Examinez l’illustration. Un administrateur souhaite établir un EtherChannel entre les deux commutateurs en utilisant le protocole PAgP (Port Aggregation Protocol) . Si le commutateur S1 est configuré pour être en mode automatique, quel mode doit être configuré sur S2 pour établir l’EtherChannel ?",
+    "answers": [
+      "off",
+      "auto",
+      "on",
+      "desirable"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 28
+  },
+  {
+    "question": "33. Quelle est l’une des caractéristiques du protocole Spanning Tree ?",
+    "answers": [
+      "Il empêche la propagation des trames de diffusion de couche 2.",
+      "Il permet de détecter les informations relatives à un appareil Cisco contigu.",
+      "Il est activé par défaut sur les commutateurs Cisco.",
+      "Il implémente un mécanisme TTL qui fonctionne sur la couche 2."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "image": null,
+    "type": "text",
+    "id": 29
+  },
+  {
+    "question": "34. Quel protocole fournit jusqu’à 16 instances de RSTP, combine de nombreux VLAN avec la même topologie physique et logique en une instance RSTP commune, et fournit une prise en charge de PortFast, une protection BPDU, un filtre BPDU, une protection de racine et une protection de boucle ?",
+    "answers": [
+      "STP",
+      "PVST+",
+      "Rapid PVST+",
+      "MST"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 30
+  },
+  {
+    "question": "35. Quelle valeur est utilisée pour déterminer le port d’un pont non racine qui deviendra un port racine dans un réseau STP ?",
+    "answers": [
+      "Le coût du chemin",
+      "L’adresse MAC la plus élevée de tous les ports du commutateur",
+      "La plus petite adresse MAC de tous les ports du commutateur",
+      "Le nombre de révisions VTP"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "image": null,
+    "type": "text",
+    "id": 31
+  },
+  {
+    "question": "36. Quel rôle de port affecté au port de commutation présente le coût le plus faible pour accéder au pont racine ?",
+    "answers": [
+      "port racine",
+      "port désactivé",
+      "port non désigné",
+      "port désigné"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "image": null,
+    "type": "text",
+    "id": 32
+  },
+  {
+    "question": "37. Le réseau d’une petite entreprise compte six commutateurs de couche 2 interconnectés. Actuellement tous les commutateurs utilisent la valeur de priorité de pont par défaut. Quelle valeur permet de configurer la priorité de pont de l’un des commutateurs de sorte qu’il devienne le pont racine dans cette conception ?",
+    "answers": [
+      "1",
+      "28672",
+      "32768",
+      "34816",
+      "61440"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "image": null,
+    "type": "text",
+    "id": 33
+  },
+  {
+    "question": "38. Examinez l’illustration. L’administrateur a essayé de créer un EtherChannel entre S1 et les deux autres commutateurs par le biais des commandes illustrées, mais sans succès. Quel est le problème ?",
+    "answers": [
+      "Le trafic ne peut pas être envoyé à deux commutateurs différents, mais uniquement à deux périphériques différents tels qu’un serveur EtherChannel-enabled et un commutateur.​",
+      "Le trafic ne peut pas être envoyé à deux commutateurs différents par l’intermédiaire de la même liaison EtherChannel.",
+      "Le trafic peut uniquement être envoyé vers deux commutateurs différents si EtherChannel est implémenté sur des interfaces Gigabit Ethernet.​",
+      "Le trafic peut uniquement être envoyé vers deux commutateurs différents si EtherChannel est implémenté sur des commutateurs de couche 3.​"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "image": null,
+    "type": "text",
+    "id": 34
+  },
+  {
+    "question": "39. Lorsqu’EtherChannel est configuré, quel mode permet de forcer une interface vers un canal de port sans échange de paquets de protocole d’agrégation ?",
+    "answers": [
+      "desirable",
+      "active",
+      "on",
+      "auto"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "image": null,
+    "type": "text",
+    "id": 35
+  },
+  {
+    "question": "40. Quelle est la description correcte d’une caractéristique d’EtherChannel ?",
+    "answers": [
+      "Il est le résultat de la combinaison de plusieurs liaisons physiques afin de ne former qu’une seule liaison entre deux commutateurs.",
+      "Il peut regrouper des types mixtes de liaisons Ethernet à 100 Mbit/s et à 1Gbit/s.",
+      "Il est constitué de plusieurs liaisons parallèles entre un commutateur et un routeur.",
+      "Il peut combiner jusqu’à 4 liaisons physiques."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "image": null,
+    "type": "text",
+    "id": 36
+  },
+  {
+    "question": "41. Un administrateur réseau configure une liaison EtherChannel entre les commutateurs SW1 et SW2 à l’aide de la commande SW1(config-if-range)# channel-group 1 mode passive . Quelle commande doit être utilisée sur SW2 pour activer cet EtherChannel ?",
+    "answers": [
+      "SW2(config-if-range)# channel-group 1 mode on",
+      "SW2(config-if-range)# channel-group 1 mode active",
+      "SW2(config-if-range)# channel-group 1 mode desirable",
+      "SW2(config-if-range)# channel-group 1 mode passive"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "image": null,
+    "type": "text",
+    "id": 37
+  },
+  {
+    "question": "42. Quelle technologie correspond à une norme de protocole ouvert permettant le regroupement automatique de ports physiques sous forme d’une liaison logique unique ?",
+    "answers": [
+      "Protocole PPP multiliaison",
+      "DTP",
+      "PAgP",
+      "LACP"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 38
+  },
+  {
+    "question": "43. Reportez-vous à l’illustration. Un administrateur réseau a exécuté la commande show etherchannel summary sur le commutateur S1. Quelle conclusion pouvez-vous tirer ?",
+    "answers": [
+      "Les ports FastEthernet Fa0/1, Fa0/2 et Fa0/3 ne rejoignent pas l’EtherChannel.",
+      "L’EtherChannel est suspendu.",
+      "Le protocole PAgP est mal configuré.",
+      "L’EtherChannel n’est pas opérationnel."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 39
+  },
+  {
+    "question": "44. Quels sont les deux avantages de l’utilisation de LACP? (Choisissez deux propositions.)",
+    "answers": [
+      "Il élimine la nécessité de configurer les interfaces de jonction lors du déploiement de VLAN sur plusieurs commutateurs.",
+      "LACP permet de combiner les interfaces Fast Ethernet et Gigabit Ethernet au sein d’un seul EtherChannel.",
+      "Il fournit un environnement simulé pour tester l’agrégation de liens.",
+      "Il permet l’utilisation de périphériques multifournisseurs.",
+      "Il permet aux commutateurs directement connectés de négocier une liaison EtherChannel.",
+      "Il réduit la quantité de configuration nécessaire sur un commutateur."
+    ],
+    "correctAnswers": [
+      3,
+      4
+    ],
+    "image": null,
+    "type": "text",
+    "id": 40
+  },
+  {
+    "question": "45. Quels sont deux avantages de l’EtherChannel ? (Choisissez deux réponses.)",
+    "answers": [
+      "La configuration de l’interface EtherChannel assure une cohérence lors de la configuration des liaisons physiques.",
+      "L’équilibrage de la charge entre les liaisons configurées en tant que liaisons EtherChannel différentes.",
+      "Le protocole STP (Spanning Tree Protocol) assure la redondance en faisant passer les interfaces défaillantes à l’état d’acheminement.",
+      "Le protocole STP (Spanning Tree Protocol) voit les liaisons physiques d’une liaison EtherChannel en tant que connexion logique unique.",
+      "L’EtherChannel utilise des liaisons physiques mises à niveau pour fournir davantage de bande passante."
+    ],
+    "correctAnswers": [
+      0,
+      3
+    ],
+    "image": null,
+    "type": "text",
+    "id": 41
+  },
+  {
+    "question": "46. Un commutateur est configuré pour exécuter STP. Quel terme décrit un champ dont la valeur par défaut est 32 768 et est le facteur déterminant initial lors de l’élection d’un pont racine?",
+    "answers": [
+      "Priorité du pont",
+      "BPDUs",
+      "ID de pont",
+      "ID système étendu"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "image": null,
+    "type": "text",
+    "id": 42
+  },
+  {
+    "question": "47. Citez deux méthodes d’équilibrage de la charge dans la technologie EtherChannel. (Choisissez deux réponses.)",
+    "answers": [
+      "La combinaison du port et d’une adresse IP source, et du port et d’une adresse IP de destination",
+      "La combinaison d’une adresse IP et MAC source, et d’une adresse IP et MAC de destination",
+      "Port source vers port de destination",
+      "Adresse MAC source vers adresse MAC de destination",
+      "Adresse IP source vers adresse IP de destination"
+    ],
+    "correctAnswers": [
+      3,
+      4
+    ],
+    "image": null,
+    "type": "text",
+    "id": 43
+  },
+  {
+    "question": "48. Un commutateur est configuré pour exécuter STP. Quel terme décrit le point de référence pour tous les calculs de chemin?",
+    "answers": [
+      "pont racine",
+      "désactivé",
+      "port désigné",
+      "port racine"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "image": null,
+    "type": "text",
+    "id": 44
+  },
+  {
+    "question": "49. Quel standard Spanning Tree prend uniquement en charge un pont racine de sorte que le trafic de tous les VLAN passe par le même chemin ?",
+    "answers": [
+      "MST",
+      "802.1D",
+      "Rapid PVST",
+      "PVST+"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "image": null,
+    "type": "text",
+    "id": 45
+  },
+  {
+    "question": "50. Un commutateur est configuré pour exécuter STP. Quel terme décrit un port non racine autorisé à transférer le trafic sur le réseau?",
+    "answers": [
+      "port désigné",
+      "port racine",
+      "désactivé",
+      "port alternatif"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "image": null,
+    "type": "text",
+    "id": 46
+  },
+  {
+    "question": "51. Un commutateur est configuré pour exécuter STP. Quel terme décrit le port de commutateur le plus proche, en termes de coût global, du pont racine?",
+    "answers": [
+      "port alternatif",
+      "désactivé",
+      "port racine",
+      "port désigné"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "image": null,
+    "type": "text",
+    "id": 47
+  }
+]

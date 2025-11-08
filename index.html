@@ -1,29 +1,68 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Site de révision du ccna2 avec une banque de question dans un fichier csv, gestion des questions avec javascript-->
-    <title>Révision CCNA2</title>
+    <title>Révision CCNA2 - Cisco Certified Network Associate 1</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Application de révision pour la certification CCNA2 (Cisco Certified Network Associate 1)">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Révision CCNA2</h1>
+        <h1>🛡️ Révision CCNA2</h1>
+        <nav id="top-nav" aria-label="Navigation principale">
+            <a href="grade.html" class="nav-link">Calculer la note finale</a>
+        </nav>
     </header>
     <main>
+        <section id="setup">
+            <div id="setup-card">
+                <h2>Configurez votre quiz</h2>
+                <form id="quiz-setup-form">
+                    <div class="form-group">
+                        <label for="questionSource">Source des questions :</label>
+                        <select id="questionSource" data-dynamic-modules></select>
+                        <small style="display:block;margin-top:0.5rem;color:var(--text-secondary);" id="source-hint">Modules détectés automatiquement</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="numQuestions">Nombre de questions :</label>
+                                                <div style="display:flex; gap:0.75rem; align-items:center">
+                                                    <input type="number" id="numQuestions" min="1" max="130" value="20" required>
+                                                    <div id="questions-badge" class="questions-badge" title="Nombre total de questions">—</div>
+                                                </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Commencer le quiz</button>
+                </form>
+            </div>
+        </section>
         <section id="questions">
-            <h2>Quizz</h2>
-            <div id="quizz"></div>
+            <div class="quiz-card">
+                <div id="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress"></div>
+                    </div>
+                </div>
+                <div id="quizz"></div>
+            </div>
         </section>
         <section id="corrections">
-            <h2>Réponses correctes</h2>
-            <div id="correct-answers"></div>
+            <div class="quiz-card">
+                <h2>❌ Réponses correctes</h2>
+                <div id="correct-answers"></div>
+            </div>
         </section>
     </main>
     <footer>
-        <p>Site réalisé par Rémy Cuvelier - 2024</p>
+        <p>Site réalisé par Rémy Cuvelier - 2025 | Certification CCNA2</p>
     </footer>
 </body>
 </html>
